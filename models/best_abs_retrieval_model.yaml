@@ -1,0 +1,28 @@
+# Minimal config for computing embeddings with this checkpoint
+# (see retrieval_training/post_training/get_embeddings.py).
+# Only the fields needed to instantiate this trajectory-mode checkpoint are
+# kept; everything else falls back to Config defaults and does not affect the
+# exported embeddings. Architecture summary: query[1,256],
+# input_projection[256,126], 1 cross-attn layer, 2-layer mlp -> retrieval_dim 256.
+
+# --- checkpoint compatibility ---
+dtw_design: abs_21j_coords          # must match the trajectory artifact design
+input_mode: trajectory              # must match the checkpoint input mode
+retrieval_dim: 256                  # model output dim
+dtw_nn_layer: False                 # selects the cross-attention head (not DTW-NN)
+
+# --- cross-attention head architecture (must match the checkpoint) ---
+trajectory_model_dim: 256           # attention_dim in trajectory mode
+num_cross_attn_heads: 4
+num_cross_attn_layers: 1
+num_projection_layers: 2
+num_queries: 1
+use_trajectory_positional_encoding: True
+
+# --- data ---
+# Only used to BUILD trajectories_abs_21j_coords.pt if it isn't already present
+# (in trajectory mode no per-clip jepa features are read). If you pass
+# --trajectories <artifact.pt> to the builder, this path is never touched.
+# Relative to the repository root; set it to a valid local training_data, or
+# supply the trajectories artifact directly.
+data_dir: outputs/training_data

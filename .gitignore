@@ -1,0 +1,27 @@
+# OS / editor junk
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.pytest_cache/
+.venv/
+venv/
+
+# Local secrets and logs
+.env
+.env.*
+!.env.example
+*.log
+
+# Data & outputs (not distributed with the repo)
+eval_data/
+outputs/
+
+# Licensed MANO / SMPL-H models (download per README)
+retrieval_training/torso_estimation_training/neutral/
+
+# Generated test fixtures and local artifacts
+retrieval_training/tests/body_pose_est_tests/
+retrieval_training/torso_estimation_training/*.pt

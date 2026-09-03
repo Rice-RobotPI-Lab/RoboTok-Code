@@ -1,0 +1,39 @@
+# RoboTok — Python dependencies.
+#
+# Training and evaluation from the exported .pt artifacts need the "core",
+# "DTW / retrieval" and "analysis" blocks. The dataset-building and 3D
+# visualization blocks are only needed for the corresponding pipeline stages
+# (see README.md). Versions are lower bounds, not hard pins; the values in
+# comments are what this code has been run against.
+
+# --- core: config, training loop, model, losses, logging ---
+torch>=2.4                 # tested: 2.12.0
+numpy>=1.26                # tested: 2.2.6
+pyyaml>=6.0                # tested: 6.0.3
+tensorboard>=2.16          # tested: 2.20.0  (torch.utils.tensorboard backend)
+psutil>=5.9                # tested: 7.2.2   (RSS logging in train.py)
+
+# --- DTW kernels + retrieval index ---
+# numba supplies the CUDA symmetric-2 DTW kernels used by online_dtw.py,
+# dtw_cknna.py and build_dataset/build_dtw_neighbors.py. A CUDA GPU is
+# required to run them; the CPU test suite skips those paths.
+numba>=0.59
+# faiss builds the candidate index for DTW neighbor mining (build_dtw_neighbors)
+# and the recall@k search in eval.py. Use faiss-gpu (conda) on CUDA machines.
+faiss-cpu>=1.8
+# soft-DTW prototype layer; only imported when cfg.dtw_nn_layer=True (model.py).
+pysdtw>=0.1
+
+# --- analysis: design sweeps and plots in dtw_cknna.py ---
+scipy>=1.11                # tested: 1.15.3
+matplotlib>=3.8            # tested: 3.10.8
+
+# --- dataset building, torso estimation, 3D visualizers ---
+opencv-python>=4.9         # frame decoding (build_dataset/)
+trimesh>=4.0               # tested: 4.12.2
+roma>=1.5                  # tested: 1.5.6   (rotation utilities)
+pyglet<2                   # tested: 1.5.31  — trimesh's windowed SceneViewer
+                           # requires the pyglet 1.x API
+
+# --- tests ---
+pytest>=8.0

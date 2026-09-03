@@ -1,0 +1,60 @@
+
+
+
+
+training_name: "abs_256dim_eval_k_500"
+dtw_design: abs_21j_coords  # pca_interjoint_dists     abs_21j_coords
+
+loss_type: topk_set_rank
+
+max_total_clips: 100000
+use_positive_mining: True 
+batch_size: 210
+positives_per_anchor: 3
+boundary_negatives_per_anchor: 2
+positive_mining_top_k: 20
+num_epochs: 100
+eval_frequency: 2
+eval_global_cknna: True
+cknna_k_values: [1, 5, 10, 20, 50, 100, 250, 500]
+set_loss_top_k: 10
+set_loss_boundary_start: 11
+set_loss_boundary_end: 20
+set_loss_hard_negatives: 16
+set_loss_weight: 1.0
+rank_loss_weight: 0.2
+distribution_loss_weight: 0.0
+set_loss_margin: 0.05
+set_loss_temperature: 0.10
+rank_loss_temperature: 0.10
+
+# Paths are relative to the repository root (ABMR_PROJECT_ROOT in Slurm jobs).
+# can also use absolute paths
+output_dir: outputs/training_outputs
+data_dir: outputs/training_data
+
+# Input stream for the head: "jepa" (frozen V-JEPA features) or "trajectory"
+# (the per-design hand trajectory itself; DTW-only loss). Default preserves
+# current behavior.
+input_mode: trajectory  # "jepa" | "trajectory"
+use_trajectory_positional_encoding: True
+
+# Smaller trajectory-mode head for low-dimensional trajectory inputs.
+trajectory_model_dim: 256
+retrieval_dim: 256
+num_cross_attn_heads: 4
+num_cross_attn_layers: 1
+num_projection_layers: 2
+use_grad_checkpoint: False
+num_queries: 1
+
+# DTW-NN head — replaces input_projection + PE + cross-attention.
+# Vestigial under this flag (kept for reference / future toggle):
+#   trajectory_model_dim, num_cross_attn_heads, num_cross_attn_layers,
+#   num_queries, query_init_batches, use_grad_checkpoint,
+#   use_trajectory_positional_encoding.
+dtw_nn_layer: False
+dtw_nn_num_nodes: 64                # smoke value; scale to 256 for the real run
+dtw_nn_prototype_length: 20         # smoke value; scale to 42 for the real run
+dtw_nn_gamma: 0.1
+dtw_nn_prototype_lr_multiplier: 10.0
