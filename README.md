@@ -1,7 +1,7 @@
 # RoboTok
 
-**An Internet-Scale Data Engine for Human Demonstration Retrieval and Dexterous
-Manipulation Learning**
+**An Internet-Scale Data Engine for Human Demonstration Video Retrieval and
+Dexterous Manipulation Learning**
 
 Howard Qian¹, Yiting Chen¹, Yunfei Xie¹, Kejia Ren¹, Podshara Chanrungmaneekul¹,
 Gaotian Wang¹, Bowen Wen², Chen Wei¹, Kaiyu Hang¹
@@ -54,8 +54,8 @@ for cross-video-only CKNNA.
 
 ```bibtex
 @article{qian2026robotok,
-  title     = {RoboTok: An Internet-Scale Data Engine for Human
-               Demonstration Retrieval and Dexterous Manipulation Learning},
+  title     = {RoboTok: An Internet-Scale Data Engine for Human Demonstration
+               Video Retrieval and Dexterous Manipulation Learning},
   author    = {Qian, Howard and Chen, Yiting and Xie, Yunfei and
                Ren, Kejia and Chanrungmaneekul, Podshara and Wang, Gaotian and
                Wen, Bowen and Wei, Chen and Hang, Kaiyu},
