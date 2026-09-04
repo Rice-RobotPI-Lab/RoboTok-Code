@@ -59,7 +59,7 @@ for cross-video-only CKNNA.
   author    = {Qian, Howard and Chen, Yiting and Xie, Yunfei and
                Ren, Kejia and Chanrungmaneekul, Podshara and Wang, Gaotian and
                Wen, Bowen and Wei, Chen and Hang, Kaiyu},
-  journal   = {arXiv preprint arXiv:TODO},
+  journal   = {arXiv preprint arXiv:2609.03199},
   year      = {2026}
 }
 ```
