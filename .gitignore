@@ -1,0 +1,20 @@
+# OS / editor junk
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.pytest_cache/
+.venv/
+venv/
+
+# Local secrets and logs
+.env
+.env.*
+!.env.example
+*.log
+
+# Data & outputs (not distributed with the repo)
+eval_data/
+outputs/
